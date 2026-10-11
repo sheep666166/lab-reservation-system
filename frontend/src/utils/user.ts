@@ -5,13 +5,13 @@ import { getUserInfo, setToken, setUserInfo } from './auth'
 const userInfo = ref(getUserInfo()) // 响应式对象 可以随时更新最新的值
 
 export function useUser() {
-  function saveLoginData(data) {
+  function saveLoginData(data: any) {
     setToken(data.token)
     setUserInfo(data.user)
     userInfo.value = data.user
   }
 
-  function updateUser(user) {
+  function updateUser(user: any) {
     setUserInfo(user)
     userInfo.value = user
   }
