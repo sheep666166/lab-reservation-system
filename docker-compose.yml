@@ -1,0 +1,13 @@
+services:
+  backend:
+    build: ./backend
+    container_name: lab-agent-backend
+    network_mode: host
+    environment:
+      - DATABASE_URL=mysql+pymysql://lab_agent:123456@127.0.0.1:3306/lab_agent
+      - HF_ENDPOINT=https://hf-mirror.com
+    volumes:
+      - ./backend/.env:/app/.env
+      - ./backend/uploads:/app/uploads
+      - ./backend/model-cache:/root/.cache/huggingface
+    restart: unless-stopped
